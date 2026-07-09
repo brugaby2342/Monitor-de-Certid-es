@@ -1,5 +1,7 @@
 # 📋 Monitor de Prazos e Expedição de Certidões
 
+<img width="1461" height="788" alt="Dashboard" src="https://github.com/user-attachments/assets/e23be02c-0ba8-49bd-b9b6-5790e61adb78" />
+
 ## 🗂 Sobre o Projeto
 Aplicação Inteligente com Low-Code — Construindo uma Solução Digital com OutSystems, IA e Arquitetura Escalável produzida para projeto para a UniFECAF / Rocketseat · IA e Automação Digital · 2026.
 
@@ -187,13 +189,17 @@ Triagem automática de pedidos por IA
 ---
 
 ## 📸 Prints da Aplicação
-Dashboard — Kanban + Gráfico
+
+<img width="1461" height="788" alt="DashboardForm" src="https://github.com/user-attachments/assets/140907df-3481-4c54-8600-a8fab3c21f66" />
 Formulário Novo Pedido — Com IA
+<img width="1461" height="853" alt="FluxoCalcularData" src="https://github.com/user-attachments/assets/7010ba99-0ff6-4061-85b8-936f03e83d02" />
 Service Studio — CalcularDataFinal
 
 ---
 
 
 Monitor de Prazos e Expedição de Certidões
+
 UniFECAF / Rocketseat · IA e Automação Digital · 2026
+
 Desenvolvido por Bruna Gabriela Ribeiro Sartor

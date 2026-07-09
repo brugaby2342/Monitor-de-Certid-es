@@ -7,57 +7,63 @@ Os Ofícios de Registro de Imóveis operam sob rigorosos prazos legais para a ex
 
 O controle manual apresenta problemas críticos:
 
-❌ Dificuldade em visualizar o status de múltiplos pedidos simultaneamente
-❌ Risco de perda de prazos legais pela falta de alerta visual
-❌ Ausência de cálculo automático de dias úteis
-❌ Ausência de histórico rastreável de pedidos expedidos
+❌ Dificuldade em visualizar o status de múltiplos pedidos simultaneamente</br>
+❌ Risco de perda de prazos legais pela falta de alerta visual</br>
+❌ Ausência de cálculo automático de dias úteis</br>
+❌ Ausência de histórico rastreável de pedidos expedidos</br>
 
 O Monitor de Certidões resolve esses problemas com uma aplicação web desenvolvida em OutSystems, com painel Kanban, cálculo automático de prazos e triagem inteligente de pedidos via IA (Groq API).
 
 ## ✅ Funcionalidades
 
-📊 Kanban Visual
-Painel com 3 colunas: A Fazer, Processando e Expedido
-⏱️ Cálculo de Prazo
-Cálculo automático em dias úteis (descarta sábados e domingos)
-🎨 Alerta Visual
-Cards mudam de cor: azul → laranja → verde conforme o status
-🤖 Triagem por IA
-Campo de texto livre → IA extrai matrícula, tipo e nome automaticamente
-📈 Gráfico de Pizza
-Volume de certidões por status em tempo real (OutSystems Charts)
-📝 Formulário Novo Pedido
-Cadastro com dropdown de tipo de certidão e cálculo automático do prazo
-🔁 CRUD Completo
-Criar, listar e atualizar pedidos de certidão
+📊 Kanban Visual</br>
+Painel com 3 colunas: A Fazer, Processando e Expedido</br>
+⏱️ Cálculo de Prazo</br>
+Cálculo automático em dias úteis (descarta sábados e domingos)</br>
+🎨 Alerta Visual</br>
+Cards mudam de cor: azul → laranja → verde conforme o status</br>
+🤖 Triagem por IA</br>
+Campo de texto livre → IA extrai matrícula, tipo e nome automaticamente</br>
+📈 Gráfico de Pizza</br>
+Volume de certidões por status em tempo real (OutSystems Charts)</br>
+📝 Formulário Novo Pedido</br>
+Cadastro com dropdown de tipo de certidão e cálculo automático do prazo</br>
+🔁 CRUD Completo</br>
+Criar, listar e atualizar pedidos de certidão</br>
+
+---
 
 ## 🏗 Arquitetura Canvas
-A aplicação segue o modelo de Arquitetura Canvas do OutSystems, com separação clara entre as camadas de Foundation, Core e End-User (Interface).
+A aplicação segue o modelo de Arquitetura Canvas do OutSystems, com separação clara entre as camadas de Foundation, Core e End-User (Interface).</br>
 
-Módulo - MonitorCertidoes_IS
-Tipo - Service
-Camada - Foundation
-Responsabilidade - Consumo da API Groq para triagem por IA
+Módulo - MonitorCertidoes_IS</br>
+Tipo - Service</br>
+Camada - Foundation</br>
+Responsabilidade - Consumo da API Groq para triagem por IA</br>
 
-Módulo - MonitorCertidoes_CS
-Tipo - Service
-Camada - Core
-Responsabilidade - Entidades, lógica de negócio e CRUD
+Módulo - MonitorCertidoes_CS</br>
+Tipo - Service</br>
+Camada - Core</br>
+Responsabilidade - Entidades, lógica de negócio e CRUD</br>
 
-Módulo - MonitorCertidoes_CW
-Tipo - Reactive Web
-Camada - Core
-Responsabilidade - Web Block CardCertidao com alerta visual
+Módulo - MonitorCertidoes_CW</br>
+Tipo - Reactive Web</br>
+Camada - Core</br>
+Responsabilidade - Web Block CardCertidao com alerta visual</br>
 
-Módulo - MonitorCertidoes_UI
-Tipo - Reactive Web
-Camada - End-User
-Responsabilidade - Dashboard, Kanban, Gráfico e Formulário
+Módulo - MonitorCertidoes_UI</br>
+Tipo - Reactive Web</br>
+Camada - End-User</br>
+Responsabilidade - Dashboard, Kanban, Gráfico e Formulário</br>
+
+---
 
 ## 🗄 Modelagem de Dados
-PedidoCertidao (Entidade Transacional)
-StatusPedido (Entidade Estática)
-TipoCertidao (Entidade Estática)
+PedidoCertidao (Entidade Transacional)</br>
+StatusPedido (Entidade Estática)</br>
+TipoCertidao (Entidade Estática)</br>
+
+---
 
 ## ⚙️ Regras de Negócio
 ### Fluxo das Server Actions e Client Actions
@@ -87,13 +93,16 @@ A lógica das principais Server Actions e Client Actions da aplicação **Monito
 8. `CardCertidaoStatusAvancado` (Client Action — tela Dashboard, handler do Notify)
 **Regra de negócio:** garante que, independentemente de qual card disparou o avanço de status, as **três colunas do Kanban** sejam recarregadas via Ajax, refletindo a movimentação do pedido entre colunas sem depender de reload de página.
 
-## 3. Alerta Visual por Prazo
+---
 
+## Alerta Visual por Prazo
 Os alertas incluem ícone de relógio, expressão "vencido" e ícone check, cada um com cor correspondente, garantindo acessibilidade para daltônicos.
 
+---
+
 ## 🤖 IA e Automação
-Triagem Automática via Groq API
-No formulário de Novo Pedido, o escrevente pode colar um texto livre (ex.: e-mail do solicitante) e clicar em "Preencher com IA".
+Triagem Automática via Groq API</br>
+No formulário de Novo Pedido, o escrevente pode colar um texto livre (ex.: e-mail do solicitante) e clicar em "Preencher com IA".</br>
 
 Fluxo:
 [Usuário digita texto livre]
@@ -116,6 +125,8 @@ TriagemIA (CS)
 │
 ▼
 [Pedido criado, entra na coluna "A Fazer"]
+
+---
 
 ## 🧪 Como Testar
 1. Acessar a aplicação
@@ -147,29 +158,31 @@ Os campos Matrícula, Tipo de Certidão e Nome devem ser preenchidos automaticam
 Clique em Enviar Pedido
 O card deve aparecer em A Fazer com o prazo calculado
 
+---
+
 ## ♿ Acessibilidade
 Daltonismo: alertas combinam cor + ícone (não dependem apenas de cor)
 Leitores de tela: labels descritivos associados a todos os inputs do formulário
+
+---
 
 ## 🛠 Tecnologias Utilizadas
 
 1. OutSystems 11
 Plataforma low-code principal
-
 2. OutSystems Charts (Forge)
 Gráfico de pizza no Dashboard
-
 3. Groq API
 Triagem automática de pedidos por IA
 
+---
+
 ## 📸 Prints da Aplicação
 Dashboard — Kanban + Gráfico
-
 Formulário Novo Pedido — Com IA
-
 Service Studio — CalcularDataFinal
 
-
+---
 
 
 Monitor de Prazos e Expedição de Certidões

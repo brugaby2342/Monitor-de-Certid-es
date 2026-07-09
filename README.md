@@ -21,7 +21,7 @@ Painel com 3 colunas: A Fazer, Processando e Expedido
 ⏱️ Cálculo de Prazo
 Cálculo automático em dias úteis (descarta sábados e domingos)
 🎨 Alerta Visual
-Cards mudam de cor: 🟢 verde → 🟡 amarelo → 🔴 vermelho conforme o prazo
+Cards mudam de cor: azul → laranja → verde conforme o status
 🤖 Triagem por IA
 Campo de texto livre → IA extrai matrícula, tipo e nome automaticamente
 📈 Gráfico de Pizza
@@ -69,64 +69,16 @@ Conta apenas dias úteis (segunda a sexta)
 Retorna DataFinal
 
 2. Fluxo do Botão Salvar
-Formulário Válido?
-
-    │
-
-    ├── False → End (campos obrigatórios)
-
-    │
-
-    └── True
-
-          ↓
-
-        CalcularDataFinal(CurrDate(), PrazoDiasUteis)
-
-          ↓
-
-        Assign DataFinal + StatusPedidoId = AFazer
-
-          ↓
-
-        SavePedidoCertidao
-
-          ↓
-
-        Navigate → Dashboard
 
 ## 3. Alerta Visual por Prazo
 
-Cor do card de acordo com os dias restantes para o fim do prazo.
-> 2 dias (🟢 Verde)
-1–2 dias (🟡 Amarelo)
-0 ou vencido (🔴 Vermelho)
-
-Os alertas incluem ícone de relógio além da cor, garantindo acessibilidade para daltônicos.
+Os alertas incluem ícone de relógio, expressão "vencido" e ícone check, cada um com cor correspondente, garantindo acessibilidade para daltônicos.
 
 ## 🤖 IA e Automação
 Triagem Automática via Groq API
 No formulário de Novo Pedido, o escrevente pode colar um texto livre (ex.: e-mail do solicitante) e clicar em "Preencher com IA".
 
 Fluxo:
-
-Texto livre do usuário
-
-        ↓
-
-Server Action no módulo IS (Foundation)
-
-        ↓
-
-Chamada REST → API Groq (LLM)
-
-        ↓
-
-Prompt estruturado → extrai JSON
-
-        ↓
-
-Preenche automaticamente os campos do formulário
 
 ## 🧪 Como Testar
 1. Acessar a aplicação
@@ -135,33 +87,32 @@ Preenche automaticamente os campos do formulário
 2. Testar o Kanban
 Acesse o Dashboard
 Verifique os cards distribuídos nas colunas A Fazer, Processando e Expedido
-Observe as cores dos cards: verde (prazo ok), amarelo (atenção), vermelho (vencido/urgente)
+Observe as cores dos cards: azul, laranja e verde
 Verifique o gráfico de pizza mostrando o volume por status
 
 3. Testar o Formulário de Novo Pedido
-Clique em "Novo Pedido"
-Preencha:
+Clique em "Novo Pedido" - abrirá o formulário
+Preencha-o:
 Número da Matrícula: ex. 99999
 Nome do Solicitante: ex. Maria da Silva
 Tipo de Certidão: selecione Inteiro Teor
-Clique em Salvar
-Volte ao Dashboard → o card deve aparecer em A Fazer com o prazo calculado
+Clique em Enviar Pedido
+O card deve aparecer em A Fazer com o prazo calculado
 
 4. Testar a Triagem por IA
 Acesse "Novo Pedido"
 No campo de texto livre, cole o seguinte texto:
 
-_Boa tarde, meu nome é João Augusto e preciso de uma certidão de inteiro teor do imóvel de matrícula número 12345. Aguardo retorno. Obrigado.
-_
+Boa tarde, meu nome é João Augusto e preciso de uma certidão de inteiro teor do imóvel de matrícula número 12345. Aguardo retorno. Obrigado.
 
 Clique em "Preencher com IA"
 Os campos Matrícula, Tipo de Certidão e Nome devem ser preenchidos automaticamente
-
+Clique em Enviar Pedido
+O card deve aparecer em A Fazer com o prazo calculado
 
 ## ♿ Acessibilidade
-Daltonismo: alertas combinam cor + ícone de relógio (não dependem apenas de cor)
+Daltonismo: alertas combinam cor + ícone (não dependem apenas de cor)
 Leitores de tela: labels descritivos associados a todos os inputs do formulário
-Responsividade: interface adapta-se a diferentes tamanhos de tela
 
 ## 🛠 Tecnologias Utilizadas
 
@@ -173,9 +124,6 @@ Gráfico de pizza no Dashboard
 
 3. Groq API
 Triagem automática de pedidos por IA
-
-4. CSS personalizado
-Estilos condicionais dos cards (verde/amarelo/vermelho)
 
 ## 📸 Prints da Aplicação
 Dashboard — Kanban + Gráfico

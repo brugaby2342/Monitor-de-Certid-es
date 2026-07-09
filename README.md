@@ -95,7 +95,7 @@ A lógica das principais Server Actions e Client Actions da aplicação **Monito
 
 ---
 
-## Alerta Visual por Prazo
+## 🕚 Alerta Visual por Prazo
 Os alertas incluem ícone de relógio, expressão "vencido" e ícone check, cada um com cor correspondente, garantindo acessibilidade para daltônicos.
 
 ---

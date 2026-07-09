@@ -142,35 +142,35 @@ Fluxo:
 [MonitordeCertidoes](https://personal-fso2pvhh.outsystemscloud.com/MonitordeCertidoes_UI/Dashboard?_ts=639183496705102230)
 
 2. Testar o Kanban
-Acesse o Dashboard
-Verifique os cards distribuídos nas colunas A Fazer, Processando e Expedido
-Observe as cores dos cards: azul, laranja e verde
-Verifique o gráfico de pizza mostrando o volume por status
+Acesse o Dashboard</br>
+Verifique os cards distribuídos nas colunas A Fazer, Processando e Expedido</br>
+Observe as cores dos cards: azul, laranja e verde</br>
+Verifique o gráfico de pizza mostrando o volume por status</br>
 
 3. Testar o Formulário de Novo Pedido
-Clique em "Novo Pedido" - abrirá o formulário
-Preencha-o:
-Número da Matrícula: ex. 99999
-Nome do Solicitante: ex. Maria da Silva
-Tipo de Certidão: selecione Inteiro Teor
-Clique em Enviar Pedido
-O card deve aparecer em A Fazer com o prazo calculado
+Clique em "Novo Pedido" - abrirá o formulário</br>
+Preencha-o:</br>
+Número da Matrícula: ex. 99999</br>
+Nome do Solicitante: ex. Maria da Silva</br>
+Tipo de Certidão: selecione Inteiro Teor</br>
+Clique em Enviar Pedido</br>
+O card deve aparecer em A Fazer com o prazo calculado</br>
 
 4. Testar a Triagem por IA
-Acesse "Novo Pedido"
-No campo de texto livre, cole o seguinte texto:
+   Acesse "Novo Pedido"</br>
+   No campo de texto livre, cole o seguinte texto:</br>
 
-Boa tarde, meu nome é João Augusto e preciso de uma certidão de inteiro teor do imóvel de matrícula número 12345. Aguardo retorno. Obrigado.
+   *Boa tarde, meu nome é João Augusto e preciso de uma certidão de inteiro teor do imóvel de matrícula número 12345. Aguardo retorno. Obrigado.*
 
-Clique em "Preencher com IA"
-Os campos Matrícula, Tipo de Certidão e Nome devem ser preenchidos automaticamente
-Clique em Enviar Pedido
-O card deve aparecer em A Fazer com o prazo calculado
+   Clique em "Preencher com IA"</br>
+   Os campos Matrícula, Tipo de Certidão e Nome devem ser preenchidos automaticamente</br>
+   Clique em Enviar Pedido</br>
+   O card deve aparecer em A Fazer com o prazo calculado</br>
 
 ---
 
 ## ♿ Acessibilidade
-Daltonismo: alertas combinam cor + ícone (não dependem apenas de cor)
+Daltonismo: alertas combinam cor + ícone (não dependem apenas de cor)</br>
 Leitores de tela: labels descritivos associados a todos os inputs do formulário
 
 ---

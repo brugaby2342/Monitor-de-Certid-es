@@ -106,24 +106,33 @@ No formulário de Novo Pedido, o escrevente pode colar um texto livre (ex.: e-ma
 
 Fluxo:
 [Usuário digita texto livre]
-│
-▼
+
+        │
+        ▼
+        
 [Preencher com IA] ──► PreencherComIaOnClick (UI)
-│
-▼
-TriagemIA (CS)
-│
-├──► GetTipoCertidaos (lista tipos ativos)
-├──► AnalisarTexto (Foundation → IA/Groq)
-└──► De-Para texto → TipoCertidaoId
-│
-▼
+
+        │
+        ▼
+        
+    TriagemIA (CS)
+        │
+        ├──► GetTipoCertidaos (lista tipos ativos)
+        ├──► AnalisarTexto (Foundation → IA/Groq)
+        └──► De-Para texto → TipoCertidaoId
+        │
+        ▼
+        
 [Formulário pré-preenchido, editável]
-│
-▼
+
+        │
+        ▼
+        
 [Usuário confirma "Novo Pedido"] ──► SavePedidoCertidao (CS)
-│
-▼
+
+        │
+        ▼
+        
 [Pedido criado, entra na coluna "A Fazer"]
 
 ---

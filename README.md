@@ -60,15 +60,32 @@ StatusPedido (Entidade Estática)
 TipoCertidao (Entidade Estática)
 
 ## ⚙️ Regras de Negócio
-1. Cálculo de Data Final (CalcularDataFinal)
-Server Action no módulo CS que:
+### Fluxo das Server Actions e Client Actions
+A lógica das principais Server Actions e Client Actions da aplicação **Monitor de Certidões**, organizadas pelas camadas do OutSystems (Foundation → CS → UI):
 
-Recebe DataEntrada e DiasUteisParaAdicionar (do tipo de certidão)
-Itera dia a dia verificando DayOfWeek
-Conta apenas dias úteis (segunda a sexta)
-Retorna DataFinal
+1. `AnalisarTexto` (Foundation)
+**Regra de negócio:** o prompt força a IA a devolver **apenas** um JSON com as 3 chaves esperadas, restringindo `TipoCertidao` exclusivamente aos valores presentes em `TipoCertidaoOptions` (evita alucinação de tipos inexistentes no cadastro).
 
-2. Fluxo do Botão Salvar
+2. `TriagemIA` (CS)
+**Regra de negócio:** é essa action que faz o **De-Para** entre o texto livre devolvido pela IA e o cadastro real de tipos de certidão. Se a IA não retornar um valor reconhecido, o campo fica em branco — o sistema nunca assume um tipo por conta própria.
+
+3. `CalcularDataFinal` (CS)
+**Regra de negócio:** calcula o prazo final do pedido somando **dias úteis** (não corridos) a partir da data de entrada, considerando o prazo específico de cada tipo de certidão (`PrazoDiasUteis`).
+
+4. `AvancarStatusPedido` (CS)
+**Regra de negócio:** o status avança sempre **uma etapa por vez** (A Fazer → Processando → Expedido), nunca pula etapas nem retrocede. Quando o pedido já está "Expedido", o botão de avanço deixa de ser exibido (`MostrarBotaoAvancar = False`).
+
+5. `SavePedidoCertidao` (CS)
+**Regra de negócio:** é a **única** action que efetivamente grava um pedido no banco. Nenhuma outra rotina (incluindo a Triagem por IA) persiste dados diretamente — a gravação só ocorre quando o usuário confirma explicitamente o formulário.
+
+6. `PreencherComIaOnClick` (Client Action — tela Dashboard)
+**Regra de negócio:** apenas **pré-preenche** o formulário para revisão do usuário. Não chama `SavePedidoCertidao` — a gravação depende de uma confirmação manual separada (botão "Novo Pedido").
+
+7. `AvancarStatusOnClick` (Client Action — bloco CardCertidao)
+**Regra de negócio:** ao invés de navegar/recarregar a página, o bloco **notifica** a tela pai de que um status mudou, permitindo que ela decida como atualizar sua própria interface.
+
+8. `CardCertidaoStatusAvancado` (Client Action — tela Dashboard, handler do Notify)
+**Regra de negócio:** garante que, independentemente de qual card disparou o avanço de status, as **três colunas do Kanban** sejam recarregadas via Ajax, refletindo a movimentação do pedido entre colunas sem depender de reload de página.
 
 ## 3. Alerta Visual por Prazo
 
@@ -79,6 +96,26 @@ Triagem Automática via Groq API
 No formulário de Novo Pedido, o escrevente pode colar um texto livre (ex.: e-mail do solicitante) e clicar em "Preencher com IA".
 
 Fluxo:
+[Usuário digita texto livre]
+│
+▼
+[Preencher com IA] ──► PreencherComIaOnClick (UI)
+│
+▼
+TriagemIA (CS)
+│
+├──► GetTipoCertidaos (lista tipos ativos)
+├──► AnalisarTexto (Foundation → IA/Groq)
+└──► De-Para texto → TipoCertidaoId
+│
+▼
+[Formulário pré-preenchido, editável]
+│
+▼
+[Usuário confirma "Novo Pedido"] ──► SavePedidoCertidao (CS)
+│
+▼
+[Pedido criado, entra na coluna "A Fazer"]
 
 ## 🧪 Como Testar
 1. Acessar a aplicação

@@ -147,6 +147,7 @@ Fluxo:
 Acesse o Dashboard</br>
 Verifique os cards distribuídos nas colunas A Fazer, Processando e Expedido</br>
 Observe as cores dos cards: azul, laranja e verde</br>
+Clique em Avançar Status em um dos cards e veja ele ser movido para a próxima coluna
 Verifique o gráfico de pizza mostrando o volume por status</br>
 
 3. Testar o Formulário de Novo Pedido
